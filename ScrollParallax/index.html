@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Parallax and Progress Bar</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="parallax-container">
+    <div class="parallax-layer layer1"></div>
+    <div class="parallax-layer layer2"></div>
+    <div class="parallax-layer layer3"></div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+
+  <script>
+    const layers = document.querySelectorAll('.parallax-layer');
+
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+      layers.forEach((layer, index) => {
+        const speed = (index + 1) * 0.3;
+        const offset = scrollPosition * speed;
+        layer.style.transform = `translateY(${offset}px)`;
+      });
+
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercentage = (scrollPosition / scrollHeight) * 100;
+      document.querySelector('.progress').style.width = scrollPercentage + '%';
+    });
+  </script>
+</body>
+</html>
