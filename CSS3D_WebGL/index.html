@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mousemove Parallax Effect</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="parallax-container">
+    <div class="parallax-layer layer1"></div>
+    <div class="parallax-layer layer2"></div>
+    <div class="parallax-layer layer3"></div>
+    <div class="text-overlay">Move your mouse!</div>
+  </div>
+
+  <script>
+    const layers = document.querySelectorAll('.parallax-layer');
+    const textOverlay = document.querySelector('.text-overlay');
+
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      
+      layers.forEach((layer, index) => {
+        const speed = (index + 1) * 0.1;
+        const offsetX = (mouseX - window.innerWidth / 2) * speed;
+        const offsetY = (mouseY - window.innerHeight / 2) * speed;
+        const rotateX = (mouseY - window.innerHeight / 2) * 0.1;  // Rotation effect based on mouseY
+        const rotateY = (mouseX - window.innerWidth / 2) * 0.1;  // Rotation effect based on mouseX
+        const translateZ = -(index + 1) * 50;  // Depth for each layer
+        
+        layer.style.transform = `translate(${offsetX}px, ${offsetY}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(${translateZ}px)`;
+      });
+
+      textOverlay.style.transform = `translate(${(mouseX - window.innerWidth / 2) * 0.05}px, ${(mouseY - window.innerHeight / 2) * 0.05}px)`;
+    });
+  </script>
+</body>
+</html>
