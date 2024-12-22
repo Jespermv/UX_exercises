@@ -1,0 +1,82 @@
+$primary-color: #f048ee;
+$secondary-color: #f2c1f1;
+$active-color: #111;
+$font-family: Helvetica, sans-serif;
+$border-radius: 5px;
+
+@mixin center($position: relative) {
+  position: $position;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0 0 20px;
+  padding: 0;
+  overflow: hidden;
+  background-color: $primary-color;
+
+  li {
+    float: left;
+
+    a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+
+      &:hover:not(.active) {
+        background-color: $secondary-color;
+      }
+
+      &.active {
+        background-color: $active-color;
+      }
+    }
+
+    &.right {
+      float: right;
+    }
+  }
+}
+
+ol {
+  width: 200px;
+
+  li {
+    span {
+      color: $primary-color;
+      padding-left: 16px;
+    }
+  }
+}
+
+.content {
+  @include center();
+  padding: 0 16px;
+  width: 80%;
+  text-align: initial;
+}
+
+.box {
+  width: 50%;
+  border: 2px solid $primary-color;
+  border-radius: $border-radius;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+img {
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  ul.topnav {
+    li.right, li {
+      float: none;
+    }
+  }
+}
