@@ -15,25 +15,21 @@
   </div>
 
   <script>
-    // Get all layers
     const layers = document.querySelectorAll('.parallax-layer');
     const textOverlay = document.querySelector('.text-overlay');
 
-    // Add event listener for mouse move
     document.addEventListener('mousemove', (e) => {
       const mouseX = e.clientX;
       const mouseY = e.clientY;
       
       layers.forEach((layer, index) => {
-        const speed = (index + 1) * 0.1;  // Different speeds for each layer
+        const speed = (index + 1) * 0.1;
         const offsetX = (mouseX - window.innerWidth / 2) * speed;
         const offsetY = (mouseY - window.innerHeight / 2) * speed;
         
-        // Apply the parallax effect using transform
         layer.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
       });
 
-      // Text overlay moves with the mouse at a slower rate
       textOverlay.style.transform = `translate(${(mouseX - window.innerWidth / 2) * 0.05}px, ${(mouseY - window.innerHeight / 2) * 0.05}px)`;
     });
   </script>
